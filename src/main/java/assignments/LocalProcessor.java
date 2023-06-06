@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,11 +38,15 @@ public class LocalProcessor {
     @ListIteratorAnnotation
     public void printAllHashcodes(List<String> stringList) {
         descriptionList = new ArrayList<>(stringList);
-        descriptionList.forEach(word -> System.out.println(word.hashCode()));
+        for (String word : descriptionList) {
+            if (word != null) {
+                System.out.println(word.hashCode());
+            }
+        }
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String generateName(LinkedList<String> stringList) {
+    public String generateName(List<String> stringList) {
         StringBuilder resultingName = new StringBuilder();
         stringList.forEach(word -> resultingName.append(word).append(' '));
         return resultingName.toString();
